@@ -21,7 +21,6 @@ app = FastAPI(
 
 db = CurrencyDatabase()
 
-
 @app.get("/", response_class=HTMLResponse)
 async def root():
     return """
