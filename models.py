@@ -31,7 +31,7 @@ class RateFilter(BaseModel):
 
 
 class RateResponse(BaseModel):
-    id: int
+    id: int = Field(0, description="ID записи")  # Значение по умолчанию 0
     date: date
     time: str
     rate: float
@@ -40,6 +40,8 @@ class RateResponse(BaseModel):
 
     class Config:
         from_attributes = True
+        arbitrary_types_allowed = True
+        validate_assignment = False
 
 
 class PaginatedResponse(BaseModel):
@@ -58,9 +60,9 @@ class StatsResponse(BaseModel):
     period_end: date
     average_rate: float
     min_rate: float
-    min_rate_date: date
+    min_rate_date: Optional[date]
     max_rate: float
-    max_rate_date: date
+    max_rate_date: Optional[date]
     records_count: int
     last_update: datetime
 
